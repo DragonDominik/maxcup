@@ -1,0 +1,60 @@
+import { useState, useEffect } from "react";
+import { useSmoothScroll } from "./useSmoothScroll";
+
+export default function ScrollToTopButton() {
+  const scrollTo = useSmoothScroll();
+  const [isVisible, setIsVisible] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsVisible(window.scrollY > 300);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <button
+      onClick={(e) => {
+        e.preventDefault();
+        scrollTo("nav"); // scroll to element with id="nav"
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`
+        fixed bottom-2 right-2
+        w-10 h-10 p-4 rounded-[var(--border-radius-16)]
+        bg-[var(--dark-blue)] text-[var(--light-blue)]
+        flex items-center justify-center
+        shadow-lg
+        transition-all duration-300 transform
+        ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}
+        cursor-pointer z-50
+      `}
+    >
+      {/* Default arrow */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className={`absolute transition-opacity duration-300 ${hovered ? "opacity-0" : "opacity-100"}`}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+      </svg>
+
+      {/* Hover arrow */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className={`absolute transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5" />
+      </svg>
+    </button>
+  );
+}

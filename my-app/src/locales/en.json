@@ -8,15 +8,27 @@
     "contact": "Contact"
   },
   "banner": {
-    "clean": "Clean energy, clean cups, cleaner future"
+    "clean": "Clean energy, clean cups, cleaner future!"
   },
   "page": {
-    "offer": "Get Offer"
+    "offer": "Get an offer"
   },
   "whymaxcup": {
-  "paragraph": "With our team, which has nearly 30 years of sales experience and more than 7 years of Re-Cup service experience, we serve our clients coming from almost every sector.\n\nDepending on the client's needs, our unique system allows token-free Re-Cup returns, enhancing the user experience!\n\nWhether it’s Re-Cup renting, Re-Cup washing, Re-Cup storage, or custom Re-Cup manufacturing, we are always ready to assist our partners in every way!",
-  "sales": "30 years of sales",
-  "cupsale": "7 years of Re-Cup",
-  "token": "Token-free system"
-}
+    "whymaxcup": "Why Max Cup?",
+    "paragraph": "With our team, which has nearly <strong class='text-dark-blue'>30 years of sales</strong> experience and more than <strong class='text-dark-blue'>7 years of Re-Cup</strong> service experience, we serve our clients coming from almost every sector.\n\nDepending on the client's needs, our unique system allows <strong class='text-dark-blue'>token-free Re-Cup returns</strong>, enhancing the user experience!\n\nWhether it’s Re-Cup renting, Re-Cup washing, Re-Cup storage, or custom Re-Cup manufacturing, we are always ready to assist our partners in every way!",
+    "sales": "30 years of sales",
+    "cupsale": "7 years of Re-Cup",
+    "token": "Token-free system"
+  },
+  "cards": {
+    "title": "Our Services",
+    "readmore": "Read more",
+    "production": "Design your event’s look in a unique style and eco-friendly way with Re-Cups!",
+    "renting": "Rent Re-Cups for your event, they are an eco-friendly, and budget-friendly option!",
+    "washing": "Re-Cups can be used hundreds of times, and every wash is powered by 100% green energy.",
+    "logistics": "With our own fleet of trucks and warehouses, we make transporting and storing Re-Cups simple."
+  },
+  "cups": {
+    "desc": "Our custom-made Re-Cups offer an alternative to traditional single-use plastic cups. We designed our Re-Cups to be reusable and durable, helping to reduce their ecological footprint. The Re-Cups available for rental are crafted with designs intended to appeal to a wide range of ages."
+  }
 }

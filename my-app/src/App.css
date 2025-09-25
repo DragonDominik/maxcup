@@ -8,6 +8,7 @@
   --primary-hover: #FF0000;
   --light-blue: rgba(229, 247, 247);
   --mid-blue: rgb(75, 215, 222);
+  --mid-blue-40: rgba(75, 215, 222,0.4);
   --dark-blue: rgba(0, 94, 107);
   --dark-blue-60: rgba(0, 94, 107, 0.6);
   --border-radius-16: calc(16px + 0.5vw);;
@@ -18,11 +19,16 @@
 html {
   font-family: 'Poppins', sans-serif;
   font-size:calc(12px + 1vw);
+  scroll-behavior: smooth;
 }
 
 .sintony {
   font-family: 'Sintony', Arial;
   font-size: 1rem;
+}
+
+.xs-text {
+  font-size: 0.75rem;
 }
 
 .sm-text {
@@ -57,6 +63,12 @@ html {
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .lg-text {
+  font-size: 2.3rem;
+}
+}
+
 .shadow-custom-text {
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
@@ -66,14 +78,6 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 -moz-box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
-
-@layer utilities {
-  .inner-custom-shadow {
-    box-shadow: inset 0 4px 10px 5px rgb(255, 0, 0);
-  }
-}
-
 
 @keyframes float-from-above {
   0% {
@@ -132,4 +136,31 @@ box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
   opacity: 0;
   z-index: 0;
   animation: slide-from-right 2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+}
+
+.text-dark-blue {
+  color: var(--dark-blue)
+}
+
+.triangle-left {
+  position: absolute;
+  right: 0;
+  width: 33vw;
+  height: 150vh;
+  background-color: var(--dark-blue-60);
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  z-index: -10;
+  pointer-events: none;
+}
+
+.triangle-right {
+  margin-top: 150vh;
+  position: absolute;
+  left: 0;
+  width: 33vw;
+  height: 150vh;
+  background-color: var(--dark-blue-60);
+clip-path: polygon(0 100%, 0 0, 100% 50%);
+  z-index: -10;
+  pointer-events: none;
 }

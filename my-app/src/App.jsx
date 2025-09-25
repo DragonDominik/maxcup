@@ -1,4 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import ResponsiveCardCarousel from "./ResponsiveCardCarousel ";
+import { useSmoothScroll } from "./useSmoothScroll";
+import ScrollToTopButton from "./ScrollToTopButton";
 import bg from "/img/bg.png";
 import "./App.css";
 
@@ -8,6 +11,8 @@ import en from "./locales/en.json";
 const translations = { HU: hu, EN: en };
 
 export default function App() {
+  const scrollTo = useSmoothScroll();
+
   const [open, setOpen] = useState(false);
 
   const browserLang = navigator.language.slice(0, 2).toUpperCase();
@@ -35,9 +40,9 @@ export default function App() {
   }, [open]);
 
   return (
-    <div id="page" className="absolute top-0 left-0 w-full h-[400vh] bg-[var(--light-blue)]" key={lang}>
-      <div
-        className="relative w-screen h-screen bg-cover bg-center m-0 p-0 max-h-[800px] sm:max-h-none"
+    <div id="page" className="relative z-0 top-0 left-0 w-full h-[1000vh] bg-[var(--light-blue)] max-w-[100vw] overflow-hidden" key={lang}>
+      <div id="nav"
+        className="relative w-screen h-screen bg-cover bg-center m-0 p-0 max-h-[1000px] sm:max-h-none"
         style={{ backgroundImage: `url(${bg})` }}
       >
 
@@ -49,7 +54,13 @@ export default function App() {
         <nav className="relative z-50 top-0 left-0 w-full px-2 py-4 hidden lg:flex items-center justify-between float-from-above sintony">
           {/* Left Menu */}
           <div className="flex gap-2 xl:gap-5 text-[var(--light-blue)] shadow-custom-text">
-            <a href="#" className="px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("cups");
+              }}
+              className="cursor-pointer px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]"
+            >
               {translations[lang].menu.cups}
             </a>
             <a href="#" className="px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
@@ -69,7 +80,7 @@ export default function App() {
           {/* Right side */}
           <div className="flex items-center gap-2">
             {/* Contact Button */}
-            <button className="bg-[var(--dark-blue)] text-[var(--light-blue)] 
+            <button className="cursor-pointer bg-[var(--dark-blue)] text-[var(--light-blue)] 
                    px-4 py-2 rounded-[var(--border-radius-16)] shadow-custom-box
                    transition-all duration-500 ease-in-out 
                    hover:bg-[var(--dark-blue-60)] hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
@@ -80,7 +91,7 @@ export default function App() {
             <div className="relative" ref={desktopLangRef}>
               <button
                 onClick={() => setOpen(!open)}
-                className="bg-[var(--dark-blue)] text-[var(--light-blue)] px-2 py-2 rounded-[var(--border-radius-16)]  shadow-custom-box flex items-center justify-center gap-1 min-w-[80px] group
+                className="cursor-pointer bg-[var(--dark-blue)] text-[var(--light-blue)] px-2 py-2 rounded-[var(--border-radius-16)]  shadow-custom-box flex items-center justify-center gap-1 min-w-[80px] group
                           transition-all duration-500 ease-in-out 
                           hover:bg-[var(--dark-blue-60)] hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]"
               >
@@ -133,7 +144,7 @@ export default function App() {
                   setIsMenuOpen(false);
                   setOpen(!open);
                 }}
-                className="md:bg-[var(--dark-blue-60)] py-1 px-2 mx-2 rounded-md flex items-center justify-center gap-1 text-[var(--light-blue)] ring-2 ring-[var(--light-blue)] ring-opacity-50"
+                className="cursor-pointer md:bg-[var(--dark-blue-60)] py-1 px-2 mx-2 rounded-md flex items-center justify-center gap-1 text-[var(--light-blue)] ring-2 ring-[var(--light-blue)] ring-opacity-50"
               >
                 <span className="font-medium">{lang}</span>
               </button>
@@ -164,7 +175,7 @@ export default function App() {
                 setIsMenuOpen(!isMenuOpen);
                 setOpen(false);
               }}
-              className="p-1 rounded-md flex items-center justify-center ring-2 ring-[var(--light-blue)] ring-opacity-50 md:bg-[var(--dark-blue-60)]"
+              className="cursor-pointer p-1 rounded-md flex items-center justify-center ring-2 ring-[var(--light-blue)] ring-opacity-50 md:bg-[var(--dark-blue-60)]"
               aria-label="Toggle menu"
             >
               <svg
@@ -197,9 +208,12 @@ export default function App() {
                 (item) => (
                   <a
                     key={item}
-                    href={`#${item.toLowerCase()}`}
                     className="text-[var(--light-blue)] text-2xl font-medium capitalize hover:text-[var(--dark-blue)] hover:bg-[var(--light-blue)] px-6 py-1 rounded-md transition-colors duration-200"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollTo(item.toLowerCase());
+                      setIsMenuOpen(false);
+                    }}
                   >
                     {item}
                   </a>
@@ -208,6 +222,8 @@ export default function App() {
             </div>
           </div>
         )}
+
+        <ScrollToTopButton></ScrollToTopButton>
 
         <div className="hidden md:grid grid-cols-[50%_50%] h-[80vh] max-h-[1200px] relative">
           <div className="flex flex-col items-left justify-center h-full custom-ease-in pl-8 xl:pl-12">
@@ -267,32 +283,48 @@ export default function App() {
 
 
 
-    {/* Miért a maxcup? */}
-  <div className="flex justify-center items-center relative w-screen h-fit m-0 p-0 mt-10 lg:mt-20">
+      {/* Miért a maxcup? */}
+      <div className="triangle-left hidden lg:block"></div>
+      <div className="triangle-right hidden lg:block"></div>
+
+      <div className="flex justify-center items-center relative w-screen h-fit m-0 p-0 mt-10 lg:mt-20">
         <div className="grid grid-cols-1 gap-1 lg:grid-cols-2 w-[90%] lg:w-[85%]">
           <div className="order-1 lg:order-1">
-            <h1 className="lg-text sintony font-bold">Miért a MaxCup?</h1>
-            <p className="whitespace-pre-wrap text-justify">
-              {translations[lang].whymaxcup.paragraph}
-            </p>
+            <h1 className="lg-text sintony font-bold">{translations[lang].whymaxcup.whymaxcup}</h1>
+            <p
+              className="whitespace-pre-wrap text-justify"
+              dangerouslySetInnerHTML={{ __html: translations[lang].whymaxcup.paragraph }}
+            />
           </div>
 
           <div className="order-3 lg:order-2 mt-2 lg:mt-0 flex justify-center items-center">
-            <video src="/img/maxvideo.webm" autoPlay loop muted playsInline className="h-[90vw] w-[90vw] lg:h-[40vw] lg:w-[40vw] object-cover rounded-[var(--border-radius-50)] border-15 lg:border-10 border-[var(--mid-blue)]" ></video>
+            <video src="/img/maxvideo.webm" autoPlay loop muted playsInline className="h-[90vw] w-[90vw] lg:h-[40vw] lg:w-[40vw] object-cover rounded-[var(--border-radius-50)] border-15 lg:border-15 border-[var(--mid-blue)]" ></video>
           </div>
 
-          <div className="hidden md:flex order-2 lg:order-3 lg:col-span-2">
-            <div className="text-left space-x-1.5 space-y-2 sm-text lg:md-text lg:space-y-0">
-              <div className="inline-block px-3 py-2 rounded-[var(--border-radius-24)] shadow-custom-box bg-[var(--mid-blue)]">{translations[lang].whymaxcup.sales}</div>
-              <div className="inline-block px-3 py-2 rounded-[var(--border-radius-24)] shadow-custom-box bg-[var(--mid-blue)]">{translations[lang].whymaxcup.cupsale}</div>
-               <div className="inline-block px-3 py-2 rounded-[var(--border-radius-24)] shadow-custom-box bg-[var(--mid-blue)]">{translations[lang].whymaxcup.token}</div>
-            </div>
 
-
-          </div>
         </div>
-
       </div>
+
+
+
+      <div className="flex justify-center items-center relative w-full h-fit min-h-[100vh] m-0 p-0 mt-20 lg:mt-0">
+        <div className="w-[90%] lg:w-[85%]">
+          <h1 className="lg-text sintony font-bold mb-2">{translations[lang].cards.title}</h1>
+          <ResponsiveCardCarousel lang={lang} translations={translations[lang]} />
+        </div>
+      </div>
+
+      {/* Poharaink */}
+      <div id="cups" className="flex justify-center items-center relative w-full h-fit min-h-[100vh] m-0 p-0 mt-20 lg:mt-0">
+        <div className="w-[90%] lg:w-[85%]">
+          <h1 className="lg-text sintony font-bold">{translations[lang].menu.cups}</h1>
+          <p
+            className="whitespace-pre-wrap text-justify"
+            dangerouslySetInnerHTML={{ __html: translations[lang].cups.desc }}
+          />
+        </div>
+      </div>
+
     </div>
   );
 }

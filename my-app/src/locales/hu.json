@@ -8,15 +8,27 @@
     "contact": "Kapcsolat"
   },
   "banner": {
-    "clean": "Tiszta energia, tiszta poharak, tisztább jövő"
+    "clean": "Tiszta energia, tiszta poharak, tisztább jövő!"
   },
   "page": {
     "offer": "Ajánlatkérés"
   },
   "whymaxcup": {
-    "paragraph": "Közel 30 éves értékesítési és több mint 7 éves Re-Pohár szolgáltatási tapasztalattal rendelkező csapatunkkal szolgáljuk ki szinte minden területről érkező megrendelőinket.\n\nMegrendelői igénytől függően egyedi rendszerünk lehetővé teszi a token mentes Re-pohár visszaváltást, ezzel segítve a felhasználói élményt!\n\nLegyen szó a Re-pohár bérlésről, Re-pohár mosásról, Re-pohár tárolásról vagy egyedi Re-pohár gyártásról, mindenben készséggel állunk partnereink rendelkezésére!",
+     "whymaxcup": "Miért a Max Cup?",
+    "paragraph": "Közel <strong class='text-dark-blue'>30 éves értékesítési</strong> és több mint <strong class='text-dark-blue'>7 éves Re-Pohár</strong> szolgáltatási tapasztalattal rendelkező csapatunkkal szolgáljuk ki szinte minden területről érkező megrendelőinket.\n\nMegrendelői igénytől függően egyedi rendszerünk lehetővé teszi a <strong class='text-dark-blue'>token mentes Re-pohár visszaváltást</strong>, ezzel segítve a felhasználói élményt!\n\nLegyen szó a Re-pohár bérlésről, Re-pohár mosásról, Re-pohár tárolásról vagy egyedi Re-pohár gyártásról, mindenben készséggel állunk partnereink rendelkezésére!",
     "sales": "30 év értékesítés",
     "cupsale": "7 év Re-Pohár",
     "token": "Token mentes rendszer"
+  },
+  "cards": {
+    "title": "Szolgálatásaink",
+    "readmore": "Olvass tovább",
+    "production": "Tervezd meg rendezvényed arculatát egyedi stílusban és környezetbarát módon a Re-Poharakkal!",
+    "renting": "Bérelj Re-Poharakat rendezvényedre, praktikus, környezetbarát és pénztárcakímélő megoldás!",
+    "washing": "A Re-Poharakat akár ezerszer használhatod, és minden mosásuk 100% zöld energiával történik.",
+    "logistics": "Saját teherautóflottánkkal és raktárainkkal egyszerűvé tesszük a Re-Poharak szállítását és tárolását."
+  },
+  "cups": {
+    "desc": "Egyedileg gyártott Re-Poharaink alternatívát kínálnak a hagyományos egyszer használatos műanyag poharakkal szemben. Re-Poharainkat úgy terveztük, hogy többször is fel lehessen őket használni, hosszú  élettartammal rendelkeznek, ezzel csökkentve az általuk hagyott  ökológiai lábnyomot. A bérelhető Re-Poharainkat igyekszünk olyan design-al gyártani, hogy széleskörűen minden korosztály számára tetszetős legyen."
   }
 }
