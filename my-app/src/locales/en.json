@@ -6,5 +6,11 @@
     "washing": "Washing",
     "logistics": "Logistics",
     "contact": "Contact"
+  },
+  "banner": {
+    "clean": "Clean energy, clean cups, cleaner future"
+  },
+  "page": {
+    "offer": "Get Offer"
   }
 }

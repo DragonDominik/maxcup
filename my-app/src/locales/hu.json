@@ -6,5 +6,11 @@
     "washing": "Mosás",
     "logistics": "Logisztika",
     "contact": "Kapcsolat"
+  },
+  "banner": {
+    "clean": "Tiszta energia, tiszta poharak, tisztább jövő"
+  },
+  "page": {
+    "offer": "Ajánlatkérés"
   }
 }
