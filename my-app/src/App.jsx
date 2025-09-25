@@ -35,30 +35,33 @@ export default function App() {
   }, [open]);
 
   return (
-    <div id="page" key={lang}>
+    <div id="page" className="absolute top-0 left-0 w-full h-[400vh] bg-[var(--light-blue)]" key={lang}>
       <div
-        className="w-screen h-screen bg-cover bg-center"
+     className="relative w-screen h-screen bg-cover bg-center m-0 p-0 max-h-[800px] sm:max-h-none"
         style={{ backgroundImage: `url(${bg})` }}
       >
-        <div className="absolute right-0 top-0 w-1/2 lg:w-9/20 h-screen bg-white/55 rounded-l-full custom-ease-in"></div>
+
+        {/* White capsule bg */}
+        <div className="hidden md:block absolute right-0 top-0 w-1/2 h-screen bg-white/55 rounded-l-full custom-ease-in"></div>
+
 
         {/* Navigation Desktop */}
-        <nav className="z-50 w-full justify-between items-center px-2 xl:px-8 py-4 bg-transparent float-from-above hidden lg:flex sintony">
+        <nav className="relative z-50 top-0 left-0 w-full px-2 py-4 hidden lg:flex items-center justify-between float-from-above sintony">
           {/* Left Menu */}
           <div className="flex gap-2 xl:gap-5 text-[var(--light-blue)] shadow-custom">
-            <a href="#" className="px-2 xl:px-4 py-2 rounded-[25px] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
+            <a href="#" className="px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
               {translations[lang].menu.cups}
             </a>
-            <a href="#" className="px-2 xl:px-4 py-2 rounded-[25px] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
+            <a href="#" className="px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
               {translations[lang].menu.production}
             </a>
-            <a href="#" className="px-2 xl:px-4 py-2 rounded-[25px] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
+            <a href="#" className="px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
               {translations[lang].menu.renting}
             </a>
-            <a href="#" className="px-2 xl:px-4 py-2 rounded-[25px] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
+            <a href="#" className="px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
               {translations[lang].menu.washing}
             </a>
-            <a href="#" className="px-2 xl:px-4 py-2 rounded-[25px] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
+            <a href="#" className="px-2 xl:px-4 py-2 rounded-[var(--border-radius-16)] transition-all duration-500 ease-in-out hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
               {translations[lang].menu.logistics}
             </a>
           </div>
@@ -67,7 +70,7 @@ export default function App() {
           <div className="flex items-center gap-4">
             {/* Contact Button */}
             <button className="bg-[var(--dark-blue)] text-[var(--light-blue)] 
-                   px-4 py-2 rounded-[16px] shadow-custom 
+                   px-4 py-2 rounded-[var(--border-radius-16)] shadow-custom 
                    transition-all duration-500 ease-in-out 
                    hover:bg-[var(--dark-blue-60)] hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]">
               <p className="shadow-custom">{translations[lang].menu.contact}</p>
@@ -77,7 +80,7 @@ export default function App() {
             <div className="relative" ref={desktopLangRef}>
               <button
                 onClick={() => setOpen(!open)}
-                className="bg-[var(--dark-blue)] text-[var(--light-blue)] px-2 py-2 rounded-[16px]  shadow-custom flex items-center justify-center gap-1 min-w-[80px] group
+                className="bg-[var(--dark-blue)] text-[var(--light-blue)] px-2 py-2 rounded-[var(--border-radius-16)]  shadow-custom flex items-center justify-center gap-1 min-w-[80px] group
                           transition-all duration-500 ease-in-out 
                           hover:bg-[var(--dark-blue-60)] hover:[box-shadow:inset_0_4px_5px_5px_rgb(0,0,0,0.25)]"
               >
@@ -93,7 +96,7 @@ export default function App() {
               </button>
 
               {open && (
-                <div className="absolute right-0 mt-2 w-auto bg-[var(--light-blue)]  rounded-[16px] custom-shadow border border-[var(--dark-blue)] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                <div className="absolute right-0 mt-2 w-auto bg-[var(--light-blue)]  rounded-[var(--border-radius-16)] custom-shadow border border-[var(--dark-blue)] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                   {["HU", "EN", "SK"].map((option) => (
                     <div
                       key={option}
@@ -130,13 +133,13 @@ export default function App() {
                   setIsMenuOpen(false);
                   setOpen(!open);
                 }}
-                className="py-1 px-2 mx-2 rounded-md flex items-center justify-center gap-1 text-[var(--light-blue)] ring-2 ring-[var(--light-blue)] ring-opacity-50"
+                className="md:bg-[var(--dark-blue-60)] py-1 px-2 mx-2 rounded-md flex items-center justify-center gap-1 text-[var(--light-blue)] ring-2 ring-[var(--light-blue)] ring-opacity-50"
               >
                 <span className="font-medium">{lang}</span>
               </button>
 
               {open && (
-                <div className="absolute right-0 mt-2 w-auto bg-[var(--light-blue)]  rounded-[16px] custom-shadow border border-[var(--dark-blue)] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                <div className="absolute right-0 mt-2 w-auto bg-[var(--light-blue)]  rounded-[var(--border-radius-16)] custom-shadow border border-[var(--dark-blue)] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                   {["HU", "EN", "SK"].map((option) => (
                     <div
                       key={option}
@@ -161,7 +164,7 @@ export default function App() {
                 setIsMenuOpen(!isMenuOpen);
                 setOpen(false);
               }}
-              className="p-1 rounded-md flex items-center justify-center ring-2 ring-[var(--light-blue)] ring-opacity-50"
+              className="p-1 rounded-md flex items-center justify-center ring-2 ring-[var(--light-blue)] ring-opacity-50 md:bg-[var(--dark-blue-60)]"
               aria-label="Toggle menu"
             >
               <svg
@@ -206,8 +209,8 @@ export default function App() {
           </div>
         )}
 
-        <div className="grid grid-cols-[50%_50%] mx-4 xl:mx-8 h-[80vh]">
-          <div className="flex flex-col items-left justify-center h-full custom-ease-in">
+        <div className="hidden md:grid grid-cols-[50%_50%] h-[80vh] max-h-[1200px] relative">
+          <div className="flex flex-col items-left justify-center h-full custom-ease-in pl-8 xl:pl-12">
             <div className="hidden lg:block sintony xl-text text-[var(--light-blue)] shadow-custom font-bold -mx-1.5 -my-2 lg:-my-6">
               MAXCUP
             </div>
@@ -218,26 +221,48 @@ export default function App() {
             <a
               href="#contact"
               className="
-    relative inline-block text-[var(--dark-blue)] bg-[var(--light-blue)] 
-    px-8 py-2 my-2 w-fit rounded-[16px] transition-all duration-500
-    after:content-['»'] after:absolute after:top-1/2 after:right-0 hover:pl-6 hover:pr-10 after:-translate-y-1/2
-    after:opacity-0 after:transition-all after:duration-500
-    hover:after:opacity-100 hover:after:right-6
-  "
+                relative inline-block text-[var(--dark-blue)] bg-[var(--light-blue)] 
+                px-8 py-2 my-2 w-fit rounded-[var(--border-radius-16)] transition-all duration-500
+                after:content-['»'] after:absolute after:top-1/2 after:right-0 hover:pl-6 hover:pr-10 after:-translate-y-1/2
+                after:opacity-0 after:transition-all after:duration-500
+                hover:after:opacity-100 hover:after:right-6
+              "
             >
               {translations[lang].page.offer}
             </a>
           </div>
 
-          <div className="flex justify-end items-center h-full pointer-events-none">
-          <img 
-  src="/img/cup1.png" 
-  alt="Cup" 
-  className="h-[70vh] xl:h-[80vh] w-auto max-w-full slide-from-right object-contain" 
-/>
-
+          <div className="flex justify-center items-center h-full pointer-events-none">
+            <img
+              src="/img/cup1.png"
+              alt="Cup"
+              className="ml-10 h-[50vh] md:px-4 lg:h-[65vh] lg:max-w-[40vw] xl:h-[80vh] 2xl:pt-10 w-auto max-w-full slide-from-right object-contain" />
           </div>
         </div>
+
+<div className="md:hidden absolute left-0 right-0 bottom-0 z-30 w-full h-[80vh] overflow-hidden flex flex-col justify-end items-center">
+
+ {/* Background image */}
+  <div
+    className="absolute bottom-[-20%] right-[-20%] w-[120%] h-[120%] bg-no-repeat bg-contain bg-right-bottom pointer-events-none slide-from-right"
+    style={{ backgroundImage: "url('/img/cup1.png')" }}
+  />
+  
+  {/* Button */}
+  <a
+    href="#contact"
+    className="
+      relative inline-block text-[var(--dark-blue)] bg-[var(--light-blue)] 
+      px-8 py-2 mb-10 w-fit rounded-[var(--border-radius-16)] transition-all duration-500
+      after:content-['»'] after:absolute after:top-1/2 after:right-0 hover:pl-6 hover:pr-10 after:-translate-y-1/2
+      after:opacity-0 after:transition-all after:duration-500
+      hover:after:opacity-100 hover:after:right-6 custom-ease-in-late
+    "
+  >
+    {translations[lang].page.offer}
+  </a>
+</div>
+
       </div>
       yaho
     </div>
