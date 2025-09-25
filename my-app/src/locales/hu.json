@@ -12,5 +12,11 @@
   },
   "page": {
     "offer": "Ajánlatkérés"
+  },
+  "whymaxcup": {
+    "paragraph": "Közel 30 éves értékesítési és több mint 7 éves Re-Pohár szolgáltatási tapasztalattal rendelkező csapatunkkal szolgáljuk ki szinte minden területről érkező megrendelőinket.\n\nMegrendelői igénytől függően egyedi rendszerünk lehetővé teszi a token mentes Re-pohár visszaváltást, ezzel segítve a felhasználói élményt!\n\nLegyen szó a Re-pohár bérlésről, Re-pohár mosásról, Re-pohár tárolásról vagy egyedi Re-pohár gyártásról, mindenben készséggel állunk partnereink rendelkezésére!",
+    "sales": "30 év értékesítés",
+    "cupsale": "7 év Re-Pohár",
+    "token": "Token mentes rendszer"
   }
 }

@@ -2,10 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image" href="./src/img/maxcup-logo-white.png" />
+    <link id="favicon" rel="icon" href="/img/maxcup-logo-black.png">
+
+    <script>
+      const favicon = document.getElementById('favicon');
+
+      function setFavicon() {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const newHref = isDark ? '/img/maxcup-logo-white.png' : '/img/maxcup-logo-black.png';
+        if (favicon.href !== newHref) {
+          favicon.href = newHref;
+        }
+      }
+
+      // Set favicon initially
+      setFavicon();
+
+      // Listen for system color scheme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFavicon);
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maxcup</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
     <div id="root"></div>

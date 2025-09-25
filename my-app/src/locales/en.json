@@ -12,5 +12,11 @@
   },
   "page": {
     "offer": "Get Offer"
-  }
+  },
+  "whymaxcup": {
+  "paragraph": "With our team, which has nearly 30 years of sales experience and more than 7 years of Re-Cup service experience, we serve our clients coming from almost every sector.\n\nDepending on the client's needs, our unique system allows token-free Re-Cup returns, enhancing the user experience!\n\nWhether it’s Re-Cup renting, Re-Cup washing, Re-Cup storage, or custom Re-Cup manufacturing, we are always ready to assist our partners in every way!",
+  "sales": "30 years of sales",
+  "cupsale": "7 years of Re-Cup",
+  "token": "Token-free system"
+}
 }
