@@ -1,0 +1,10 @@
+{
+  "menu": {
+    "cups": "Poharaink",
+    "production": "Gyártás",
+    "renting": "Bérlés",
+    "washing": "Mosás",
+    "logistics": "Logisztika",
+    "contact": "Kapcsolat"
+  }
+}

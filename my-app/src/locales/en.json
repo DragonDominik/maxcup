@@ -1,0 +1,10 @@
+{
+  "menu": {
+    "cups": "Cups",
+    "production": "Production",
+    "renting": "Renting",
+    "washing": "Washing",
+    "logistics": "Logistics",
+    "contact": "Contact"
+  }
+}
