@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useSmoothScroll } from "./useSmoothScroll";
 import "./App.css";
 
-import hu from "./locales/hu.json";
-import en from "./locales/en.json";
-
 const ResponsiveCardCarousel = ({ lang, translations }) => {
+    const scrollTo = useSmoothScroll();
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -15,28 +15,28 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
             title: `${translations.menu.production}`,
             icon: "/img/maxcup-gyartas-pictogram.png",
             text: `${translations.cards.production}`,
-            link: "#poharak"
+            link: "production"
         },
         {
             id: 2,
             title: `${translations.menu.renting}`,
             icon: "/img/maxcup-berles-pictogram.png",
             text: `${translations.cards.renting}`,
-            link: "#berles"
+            link: "renting"
         },
         {
             id: 3,
             title: `${translations.menu.washing}`,
             icon: "/img/maxcup-mosas-pictogram.png",
             text: `${translations.cards.washing}`,
-            link: "#mosas"
+            link: "washing"
         },
         {
             id: 4,
             title: `${translations.menu.logistics}`,
             icon: "/img/maxcup-logisztika-pictogram.png",
             text: `${translations.cards.logistics}`,
-            link: "#logisztika"
+            link: "logistics"
         }
     ];
 
@@ -92,7 +92,11 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
                                 {card.text}
                             </p>
                             <a
-                                href={card.link}
+                                href={`#${card.link}`}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    scrollTo(card.link);
+                                }}
                                 className="
     relative
     flex justify-center items-center
@@ -146,7 +150,11 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
                                             {card.text}
                                         </p>
                                         <a
-                                            href={card.link}
+                                            href={`#${card.link}`}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                scrollTo(card.link);
+                                            }}
                                             className="
     relative
     flex justify-center items-center

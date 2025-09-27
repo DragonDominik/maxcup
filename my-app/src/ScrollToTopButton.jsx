@@ -22,8 +22,8 @@ export default function ScrollToTopButton() {
       onMouseLeave={() => setHovered(false)}
       className={`
         fixed bottom-2 right-2
-        w-10 h-10 p-4 rounded-[var(--border-radius-16)]
-        bg-[var(--dark-blue)] text-[var(--light-blue)]
+        w-10 h-10 lg:w-5 lg:h-5 p-4 rounded-[var(--border-radius-16)]
+        bg-[var(--dark-blue-60)] text-[var(--light-blue)]
         flex items-center justify-center
         shadow-lg
         transition-all duration-300 transform

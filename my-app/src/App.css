@@ -14,6 +14,8 @@
   --border-radius-16: calc(16px + 0.5vw);;
   --border-radius-24: calc(24px + 0.5vw);;
   --border-radius-50: calc(50px + 0.5vw);;
+
+  --lg-text-heigth: calc(calc(12px + 1vw) *2.5 * 1.6);
 }
 
 html {
@@ -61,7 +63,12 @@ html {
   .xl-text-between-md-lg {
     font-size: 1.5rem;
   }
+  nav {
+    padding-bottom: 0;
+  }
 }
+
+
 
 @media (min-width: 1024px) and (max-width: 1279px) {
   .lg-text {
