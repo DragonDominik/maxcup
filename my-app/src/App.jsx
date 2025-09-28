@@ -17,8 +17,18 @@ export default function App() {
   const [open, setOpen] = useState(false);
 
   const browserLang = navigator.language.slice(0, 2).toUpperCase();
-  const defaultLang = ["HU", "EN", "SK"].includes(browserLang) ? browserLang : "EN";
+
+  // Alapállapot betöltése localStorage-ből, ha van
+  const savedLang = localStorage.getItem("lang");
+  const defaultLang = savedLang || (["HU", "EN", "SK"].includes(browserLang) ? browserLang : "EN");
+
   const [lang, setLang] = useState(defaultLang);
+
+  useEffect(() => {
+    localStorage.setItem("lang", lang);
+  }, [lang]);
+
+
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -689,7 +699,7 @@ export default function App() {
 
             {/* 3 */}
             <div className="flex flex-col justify-start p-1 order-4 lg:order-4 items-center 2xl:items-start">
-                <CupForm lang={lang} translations={translations[lang]} ></CupForm>
+              <CupForm lang={lang} translations={translations[lang]} ></CupForm>
             </div>
 
             <div className="flex flex-col justify-start items-start p-1 order-3 lg:order-3 space-y-4">
