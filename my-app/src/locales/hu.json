@@ -57,6 +57,13 @@
     "company": "Cégnév",
     "email": "Email",
     "phone": "Telefonszám",
-    "message": "Üzenet"
+    "message": "Üzenet",
+    "consales": "Gyártás, értékesítés",
+    "confactory": "Bérlés, mosás, üzem",
+    "other": "Egyéb",
+    "reason": "Kapcsolatfelvétel oka",
+    "sending": "Küldés...",
+    "sent": "Elküldve",
+    "error": "Hiba"
   }
 }
