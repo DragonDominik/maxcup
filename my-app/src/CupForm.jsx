@@ -46,7 +46,7 @@ export default function CupForm({ lang, translations }) {
     };
 
     return (
-        <div className="max-w-3xl mx-auto">
+        <div className="w-full">
             <form onSubmit={onSubmit} className="space-y-4">
                 <input type="hidden" name="subject" value="Title" />
                 <input type="hidden" name="from_name" value="Sender" />

@@ -11,7 +11,9 @@
     "clean": "Tiszta energia, tiszta poharak, tisztább jövő!"
   },
   "page": {
-    "offer": "Ajánlatkérés"
+    "offer": "Ajánlatkérés",
+    "title": "Max Cup | Egyedi Re-Pohár – Gyártás, Bérlés & Mosás",
+   "description": "Re-pohár minden eseményre. Egyedi Re-pohár gyártás vagy bérlés és mosás, olvass tovább és kérj személyre szabott ajánlatát."
   },
   "whymaxcup": {
     "whymaxcup": "Miért a Max Cup?",

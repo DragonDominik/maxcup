@@ -1,42 +1,61 @@
 import { useState, useRef, useEffect } from "react";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import ResponsiveCardCarousel from "./ResponsiveCardCarousel";
 import { useSmoothScroll } from "./useSmoothScroll";
 import ScrollToTopButton from "./ScrollToTopButton";
+import { useMetaTags } from "./setMetaTag";
 import CupForm from "./CupForm";
-import bg from "/img/bg.png";
+import bg from "/img/bg.webp";
 import "./App.css";
 
 import hu from "./locales/hu.json";
 import en from "./locales/en.json";
 
 const translations = { HU: hu, EN: en };
+const allowedLangs = ["HU", "EN",];
 
 export default function App() {
   const scrollTo = useSmoothScroll();
 
   const [open, setOpen] = useState(false);
 
+  const { lang: urlLangParam } = useParams();
+  const navigate = useNavigate();
+
+  const savedLang = localStorage.getItem("lang")?.toUpperCase();
   const browserLang = navigator.language.slice(0, 2).toUpperCase();
 
-  // Alapállapot betöltése localStorage-ből, ha van
-  const savedLang = localStorage.getItem("lang");
-  const defaultLang = savedLang || (["HU", "EN", "SK"].includes(browserLang) ? browserLang : "EN");
+  // Normalize URL lang
+  const urlLang = urlLangParam?.toUpperCase();
 
-  const [lang, setLang] = useState(defaultLang);
+  // Determine initial language priority
+  const initialLang =
+    urlLang && allowedLangs.includes(urlLang)
+      ? urlLang
+      : savedLang && allowedLangs.includes(savedLang)
+        ? savedLang
+        : allowedLangs.includes(browserLang)
+          ? browserLang
+          : "EN";
 
+  const [lang, setLang] = useState(initialLang);
+
+  // Sync language with URL and localStorage
   useEffect(() => {
     localStorage.setItem("lang", lang);
-  }, [lang]);
 
-
+    // Navigate only if URL is missing or invalid
+    if (!urlLang || !allowedLangs.includes(urlLang) || urlLang !== lang) {
+      navigate(`/${lang.toLowerCase()}`, { replace: true });
+    }
+  }, [lang, urlLang, navigate]);
+  useMetaTags(translations, lang);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // refs for the language dropdown wrappers (desktop and mobile)
   const desktopLangRef = useRef(null);
   const mobileLangRef = useRef(null);
 
-  // close dropdown when clicking outside of either lang wrapper
   useEffect(() => {
     function handleClickOutside(e) {
       if (!open) return;
@@ -52,7 +71,7 @@ export default function App() {
 
   return (
     <div id="page" className="relative z-0 top-0 left-0 w-full h-fit bg-[var(--light-blue)] max-w-[100vw] overflow-hidden" key={lang}>
-      <div id="nav"
+      <div id="banner"
         className="flex flex-col relative w-screen h-screen bg-cover bg-center m-0 p-0 max-h-[1000px] md:max-h-[160vw] lg:max-h-[80vw]"
         style={{ backgroundImage: `url(${bg})` }}
       >
@@ -62,7 +81,7 @@ export default function App() {
 
 
         {/* Navigation Desktop */}
-        <nav className="relative z-50 top-0 left-0 w-full px-2 py-4 hidden lg:flex items-center justify-between float-from-above sintony">
+        <nav className="relative z-50 top-0 left-0 w-full px-4 py-4 hidden lg:flex items-center justify-between float-from-above sintony">
           {/* Left Menu */}
           <div className="flex gap-2 xl:gap-5 text-[var(--light-blue)] shadow-custom-text">
             <a
@@ -157,7 +176,7 @@ export default function App() {
 
               {open && (
                 <div className="absolute right-0 mt-2 w-auto bg-[var(--light-blue)]  rounded-[var(--border-radius-16)] border border-[var(--dark-blue)] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-                  {["HU", "EN", "SK"].map((option) => (
+                  {allowedLangs.map((option) => (
                     <div
                       key={option}
                       className={`px-4 py-1 cursor-pointer flex items-center justify-center font-medium text-gray-700 
@@ -181,7 +200,7 @@ export default function App() {
         <nav className="relative z-50 top-0 left-0 w-full px-4 py-4 flex lg:hidden items-center justify-between float-from-above sintony">
           {/* Left: MAXCUP */}
           <div className="text-[var(--light-blue)] shadow-custom-text py-2 font-semibold">
-            MAXCUP
+            MAX CUP
           </div>
 
           {/* Right: Menu toggle */}
@@ -200,7 +219,7 @@ export default function App() {
 
               {open && (
                 <div className="absolute right-0 mt-2 w-auto bg-[var(--light-blue)]  rounded-[var(--border-radius-16)] border border-[var(--dark-blue)] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-                  {["HU", "EN", "SK"].map((option) => (
+                  {allowedLangs.map((option) => (
                     <div
                       key={option}
                       className={`px-4 py-1 cursor-pointer flex items-center justify-center font-medium text-gray-700 
@@ -334,7 +353,7 @@ export default function App() {
         <div className="hidden md:grid grid-cols-[50%_50%] flex-1 relative">
           <div className="flex flex-col items-left justify-center custom-ease-in pl-8 xl:pl-12 ">
             <div className="hidden lg:block sintony xl-text text-[var(--light-blue)] shadow-custom-text font-bold -mx-1.5 -my-2 lg:-my-6">
-              MAXCUP
+              MAX CUP
             </div>
             <div className="text-[var(--light-blue)] shadow-custom-text xl-text-between-md-lg">
               {translations[lang].banner.clean}
@@ -359,7 +378,7 @@ export default function App() {
 
           <div className="flex justify-center items-center">
             <img
-              src="/img/cup1.png"
+              src="/img/cup1.webp"
               alt="Cup"
               className="ml-10 max-h-[70vw] h-[50vh] md:px-4 lg:h-[65vh] lg:max-w-[40vw] xl:h-[80vh] w-auto max-w-full slide-from-right object-contain" />
           </div>
@@ -370,7 +389,7 @@ export default function App() {
           {/* Background image */}
           <div
             className="absolute bottom-[-20%] right-[-20%] w-[120%] h-[120%] bg-no-repeat bg-contain bg-right-bottom slide-from-right"
-            style={{ backgroundImage: "url('/img/cup1.png')" }}
+            style={{ backgroundImage: "url('/img/cup1.webp')" }}
           />
 
           {/* Button */}
@@ -415,15 +434,6 @@ export default function App() {
         </div>
       </div>
 
-
-      {/* Szolgáltatásaink */}
-      <div className="flex justify-center items-center relative w-full min-h-[100vh] 2xl:min-h-[60vw] h-fit max-h-[1000px] md:max-h-[160vw] lg:max-h-[80vw] m-0 p-0 mt-20 lg:mt-0">
-        <div className="w-[90%] lg:w-[85%]">
-          <h1 className="lg-text sintony font-bold mb-2">{translations[lang].cards.title}</h1>
-          <ResponsiveCardCarousel lang={lang} translations={translations[lang]} />
-        </div>
-      </div>
-
       {/* Poharaink */}
       <div id="cups" className="flex justify-center items-center relative w-full min-h-[100vh] 2xl:min-h-[60vw] h-fit max-h-[1000px] md:max-h-[160vw] lg:max-h-[80vw] m-0 p-0 mt-20 lg:mt-0">
         <div className="w-[90%] lg:w-[85%]">
@@ -435,6 +445,14 @@ export default function App() {
         </div>
       </div>
 
+      {/* Szolgáltatásaink */}
+      <div className="flex justify-center items-center relative w-full min-h-[100vh] 2xl:min-h-[60vw] h-fit max-h-[1000px] md:max-h-[160vw] lg:max-h-[80vw] m-0 p-0 mt-20 lg:mt-0">
+        <div className="w-[90%] lg:w-[85%]">
+          <h1 className="lg-text sintony font-bold mb-2">{translations[lang].cards.title}</h1>
+          <ResponsiveCardCarousel lang={lang} translations={translations[lang]} />
+        </div>
+      </div>
+
 
       {/* Gyártás */}
       <div id="production" className="flex justify-center items-center relative w-full min-h-[100vh] 2xl:min-h-[60vw] h-fit max-h-[1000px] md:max-h-[160vw] lg:max-h-[80vw] m-0 p-0 mt-20 lg:mt-0">
@@ -442,7 +460,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 mx-auto">
             {/* 1 */}
             <div className="flex flex-col justify-center p-1 order-1">
-              <h1 className="lg-text sintony font-bold">{translations[lang].production.title}</h1>
+              <h2 className="lg-text sintony font-bold">{translations[lang].production.title}</h2>
             </div>
 
             {/* 2 */}
@@ -454,7 +472,7 @@ export default function App() {
             <div className="flex flex-col justify-start p-1 order-4 lg:order-3 items-center 2xl:items-start">
               <div className="inline-block">
                 <img
-                  src="/img/maxcup-repohar-gyartas.jpg" alt={translations[lang].production.title}
+                  src="/img/maxcup-repohar-gyartas.webp" alt={translations[lang].production.title}
                   className="rounded-[var(--border-radius-50)] border-15 lg:border-15 border-[var(--mid-blue)] shadow-custom-box"
                 />
 
@@ -511,7 +529,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 mx-auto">
             {/* 1 */}
             <div className="flex flex-col justify-center p-1 order-1 lg:order-2">
-              <h1 className="lg-text sintony font-bold">{translations[lang].renting.title}</h1>
+              <h2 className="lg-text sintony font-bold">{translations[lang].renting.title}</h2>
             </div>
 
             {/* 2 */}
@@ -524,7 +542,7 @@ export default function App() {
             <div className="flex flex-col justify-start p-1 order-4 lg:order-4 items-center 2xl:items-start">
               <div className="inline-block">
                 <img
-                  src="/img/maxcup-repohar-berles.png" alt={translations[lang].renting.title}
+                  src="/img/maxcup-repohar-berles.webp" alt={translations[lang].renting.title}
                   className="rounded-[var(--border-radius-50)] border-15 lg:border-15 border-[var(--mid-blue)] shadow-custom-box"
                 />
 
@@ -582,7 +600,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 mx-auto">
             {/* 1 */}
             <div className="flex flex-col justify-center p-1 order-1">
-              <h1 className="lg-text sintony font-bold">{translations[lang].washing.title}</h1>
+              <h2 className="lg-text sintony font-bold">{translations[lang].washing.title}</h2>
             </div>
 
             {/* 2 */}
@@ -595,7 +613,7 @@ export default function App() {
             <div className="flex flex-col justify-start p-1 order-4 lg:order-3 items-center 2xl:items-start">
               <div className="inline-block">
                 <img
-                  src="/img/maxcup-repohar-mosas.jpg" alt={translations[lang].washing.title}
+                  src="/img/maxcup-repohar-mosas.webp" alt={translations[lang].washing.title}
                   className="rounded-[var(--border-radius-50)] border-15 lg:border-15 border-[var(--mid-blue)] shadow-custom-box"
                 />
 
@@ -651,7 +669,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 mx-auto">
             {/* 1 */}
             <div className="flex flex-col justify-center p-1 order-1 lg:order-2">
-              <h1 className="lg-text sintony font-bold">{translations[lang].logistics.title}</h1>
+              <h2 className="lg-text sintony font-bold">{translations[lang].logistics.title}</h2>
             </div>
 
             {/* 2 */}
@@ -664,7 +682,7 @@ export default function App() {
             <div className="flex flex-col justify-start p-1 order-4 lg:order-4 items-center 2xl:items-start">
               <div className="inline-block">
                 <img
-                  src="/img/maxcup-repohar-raktarozas-szallitas.jpg" alt={translations[lang].logistics.title}
+                  src="/img/maxcup-repohar-raktarozas-szallitas.webp" alt={translations[lang].logistics.title}
                   className="rounded-[var(--border-radius-50)] border-15 lg:border-15 border-[var(--mid-blue)] shadow-custom-box"
                 />
               </div>

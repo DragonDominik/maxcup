@@ -16,13 +16,14 @@ export default function ScrollToTopButton() {
     <button
       onClick={(e) => {
         e.preventDefault();
-        scrollTo("nav"); // scroll to element with id="nav"
+        scrollTo("banner"); // scroll to element with id="nav"
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={`
         fixed bottom-2 right-2
-        w-10 h-10 lg:w-5 lg:h-5 p-4 rounded-[var(--border-radius-16)]
+        w-10 h-10 lg:w-8 lg:h-8 p-2 lg:p-1
+        rounded-[var(--border-radius-16)]
         bg-[var(--dark-blue-60)] text-[var(--light-blue)]
         flex items-center justify-center
         shadow-lg
@@ -38,7 +39,7 @@ export default function ScrollToTopButton() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className={`absolute transition-opacity duration-300 ${hovered ? "opacity-0" : "opacity-100"}`}
+        className={`w-6 h-6 lg:w-4 lg:h-4 absolute transition-opacity duration-300 ${hovered ? "opacity-0" : "opacity-100"}`}
       >
         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
       </svg>
@@ -50,7 +51,7 @@ export default function ScrollToTopButton() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className={`absolute transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`}
+        className={`w-6 h-6 lg:w-4 lg:h-4 absolute transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`}
       >
         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />
         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5" />

@@ -13,28 +13,28 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
         {
             id: 1,
             title: `${translations.menu.production}`,
-            icon: "/img/maxcup-gyartas-pictogram.png",
+            icon: "/img/maxcup-gyartas-pictogram.webp",
             text: `${translations.cards.production}`,
             link: "production"
         },
         {
             id: 2,
             title: `${translations.menu.renting}`,
-            icon: "/img/maxcup-berles-pictogram.png",
+            icon: "/img/maxcup-berles-pictogram.webp",
             text: `${translations.cards.renting}`,
             link: "renting"
         },
         {
             id: 3,
             title: `${translations.menu.washing}`,
-            icon: "/img/maxcup-mosas-pictogram.png",
+            icon: "/img/maxcup-mosas-pictogram.webp",
             text: `${translations.cards.washing}`,
             link: "washing"
         },
         {
             id: 4,
             title: `${translations.menu.logistics}`,
-            icon: "/img/maxcup-logisztika-pictogram.png",
+            icon: "/img/maxcup-logisztika-pictogram.webp",
             text: `${translations.cards.logistics}`,
             link: "logistics"
         }
@@ -86,7 +86,7 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
                                     className="h-[80px] xl:h-[100px] w-auto object-contain"
                                 />
                             </div>
-                            <h2 className="font-bold text-center mb-1">{card.title}</h2>
+                            <div className="font-bold text-center mb-1">{card.title}</div>
 
                             <p className="xs-text leading-relaxed flex-grow text-center">
                                 {card.text}
@@ -144,7 +144,7 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
                                                 className="h-[100px] w-auto object-contain"
                                             />
                                         </div>
-                                        <h2 className="font-bold text-center mb-1">{card.title}</h2>
+                                        <div className="font-bold text-center mb-1">{card.title}</div>
 
                                         <p className="md-text leading-relaxed flex-grow text-center">
                                             {card.text}
