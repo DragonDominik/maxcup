@@ -67,5 +67,10 @@
     "sending": "Küldés...",
     "sent": "Elküldve",
     "error": "Hiba"
+  },
+  "footer": {
+    "maxcup": "Max Cup | Minden jog fenntarva.",
+    "contact": "Elérhetőség",
+    "address": "Cím"
   }
 }

@@ -85,26 +85,6 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-@keyframes float-from-above {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.float-from-above {
-  opacity: 0;
-  animation: float-from-above 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
-}
-
-
 @keyframes custom-ease-in {
   0% {
     opacity: 0;

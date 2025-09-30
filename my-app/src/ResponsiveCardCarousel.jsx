@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { USALProvider } from '@usal/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSmoothScroll } from "./useSmoothScroll";
 import "./App.css";
@@ -77,52 +78,51 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
             {/* Desktop verzió - 4 kártya egyszerre (md és nagyobb) */}
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {cards.map((card) => (
-                    <div key={card.id} className="bg-[var(--mid-blue-40)] rounded-[var(--border-radius-24)] shadow-custom-box overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-[55vw] lg:h-[40vw] min-h-none xl:min-h-[500px] xl:h-[30vw] max-h-[1000px] xl:max-h-[800px]">
-                        <div className="p-4 flex flex-col flex-grow">
-                            <div className="flex justify-center mb-2">
-                                <img
-                                    src={card.icon}
-                                    alt={`${card.title} icon`}
-                                    className="h-[80px] xl:h-[100px] w-auto object-contain"
-                                />
-                            </div>
-                            <div className="font-bold text-center mb-1">{card.title}</div>
-
-                            <p className="xs-text leading-relaxed flex-grow text-center">
-                                {card.text}
-                            </p>
-                            <a
-                                href={`#${card.link}`}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    scrollTo(card.link);
-                                }}
-                                className="
-    relative
-    flex justify-center items-center
-    text-[var(--dark-blue)]
-    font-medium text-sm
-    underline
-    mt-auto
-    transition-transform duration-300
-    hover:-translate-y-0.5
-  "
-                            >
-                                <span
+                    <USALProvider>
+                        <div key={card.id} className="bg-[var(--mid-blue-40)] rounded-[var(--border-radius-24)] shadow-custom-box overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-[55vw] lg:h-[40vw] min-h-none xl:min-h-[500px] xl:h-[30vw] max-h-[1000px] xl:max-h-[800px]" data-usal={`fade-u delay-100 duration-1000 threshold-60`}>
+                            <div className="p-4 flex flex-col flex-grow">
+                                <div className="flex justify-center mb-2">
+                                    <img
+                                        src={card.icon}
+                                        alt={`${card.title} icon`}
+                                        className="h-[80px] xl:h-[100px] w-auto object-contain"
+                                    />
+                                </div>
+                                <div className="font-bold text-center mb-1">{card.title}</div>
+                                <p className="xs-text leading-relaxed flex-grow text-center">
+                                    {card.text}
+                                </p>
+                                <a
+                                    href={`#${card.link}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollTo(card.link);
+                                    }}
                                     className="
-      relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px]
-      after:w-0 after:h-[2px] after:bg-[var(--dark-blue)]
-      after:transition-all after:duration-300
-      hover:after:w-full
-    "
+                            relative
+                            flex justify-center items-center
+                            text-[var(--dark-blue)]
+                            font-medium text-sm
+                            underline
+                            mt-auto
+                            transition-transform duration-300
+                            hover:-translate-y-0.5
+                          "
                                 >
-                                    {translations.cards.readmore}
-                                </span>
-                            </a>
-
-
+                                    <span
+                                        className="
+                              relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px]
+                              after:w-0 after:h-[2px] after:bg-[var(--dark-blue)]
+                              after:transition-all after:duration-300
+                              hover:after:w-full
+                            "
+                                    >
+                                        {translations.cards.readmore}
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    </USALProvider>
                 ))}
             </div>
 
@@ -188,7 +188,7 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
                 <button
                     onClick={prevSlide}
                     disabled={isAnimating}
-                    className={`absolute left-2 top-1/2 -translate-y-1/2 bg-[var(--dark-blue)] backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 z-10 hover:bg-white ${isAnimating ? 'opacity-50' : ''
+                    className={`absolute left-2 top-1/2 -translate-y-1/2 bg-[var(--dark-blue)] backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 z-10 hover:bg-[var(--dark-blue-60)] ${isAnimating ? 'opacity-50' : ''
                         }`}
                 >
                     <ChevronLeft className="w-5 h-5 text-[var(--light-blue)]" />
@@ -197,7 +197,7 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
                 <button
                     onClick={nextSlide}
                     disabled={isAnimating}
-                    className={`absolute right-2 top-1/2 -translate-y-1/2 bg-[var(--dark-blue)] backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 z-10 hover:bg-white ${isAnimating ? 'opacity-50' : ''
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 bg-[var(--dark-blue)] backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 z-10 hover:bg-[var(--dark-blue-60)] ${isAnimating ? 'opacity-50' : ''
                         }`}
                 >
                     <ChevronRight className="w-5 h-5 text-[var(--light-blue)]" />
@@ -210,7 +210,7 @@ const ResponsiveCardCarousel = ({ lang, translations }) => {
                             key={index}
                             onClick={() => goToSlide(index)}
                             disabled={isAnimating}
-                            className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-[var(--dark-blue)]' : 'bg-gray-300'
+                            className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-[var(--dark-blue)]' : 'bg-[var(--dark-blue-60)]'
                                 }`}
                             aria-label={`${index + 1}. kártya`}
                         />
