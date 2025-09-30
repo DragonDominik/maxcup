@@ -1,16 +1,21 @@
 import { useCallback } from "react";
 
-export const useSmoothScroll = () => {
+export const useSmoothScroll = (offset = 0) => {
   const scrollTo = useCallback((id) => {
     const target = document.getElementById(id);
     if (!target) return;
 
-    // Azonnali smooth scroll
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - offset;
 
-    // Frissítjük a hash-t az URL-ben
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+
+    // Update URL hash
     window.history.pushState(null, "", `#${id}`);
-  }, []);
+  }, [offset]);
 
   return scrollTo;
 };

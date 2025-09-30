@@ -71,7 +71,7 @@ export default function App() {
   }, [open]);
 
   return (
-    <div id="page" className="relative z-0 top-0 left-0 w-full h-fit bg-[var(--light-blue)] max-w-[100vw] overflow-hidden" key={lang}>
+    <div id="page" className="relative z-0 top-0 left-0 w-full h-fit bg-[var(--light-blue)] max-w-[100vw] overflow-hidden pb-1" key={lang}>
       <div id="banner"
         className="flex flex-col relative w-screen h-screen bg-cover bg-center m-0 p-0 max-h-[1000px] md:max-h-[160vw] lg:max-h-[80vw]"
         style={{ backgroundImage: `url(${bg})` }}
