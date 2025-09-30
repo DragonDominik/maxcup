@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { USALProvider } from '@usal/react';
 import { Routes, Route, useParams, useNavigate } from "react-router-dom";
-import ResponsiveCardCarousel from "./ResponsiveCardCarousel";
-import { useSmoothScroll } from "./useSmoothScroll";
-import ScrollToTopButton from "./ScrollToTopButton";
-import { useMetaTags } from "./setMetaTag";
-import CupForm from "./CupForm";
+import ResponsiveCardCarousel from "./components/ResponsiveCardCarousel";
+import { useSmoothScroll } from "./components/useSmoothScroll";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import { useMetaTags } from "./components/setMetaTag";
+import CupForm from "./components/CupForm";
 import bg from "/img/bg.webp";
 import "./App.css";
 

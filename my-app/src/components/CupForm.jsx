@@ -1,6 +1,6 @@
 import React from "react";
 import { USALProvider } from '@usal/react';
-import "./App.css";
+import "../App.css";
 
 export default function CupForm({ lang, translations }) {
     const [status, setStatus] = React.useState("idle"); 

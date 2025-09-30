@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { USALProvider } from '@usal/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSmoothScroll } from "./useSmoothScroll";
-import "./App.css";
+import "../App.css";
 
 const ResponsiveCardCarousel = ({ lang, translations }) => {
     const scrollTo = useSmoothScroll();
