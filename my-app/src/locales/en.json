@@ -66,7 +66,8 @@
     "reason": "Reason for contact",
     "sending": "Sending...",
     "sent": "Sent",
-    "error": "Error"
+    "error": "Error",
+    "follow": "Follow Us"
   },
   "footer": {
     "maxcup": "Max Cup | All Rights Reserved.",

@@ -154,7 +154,7 @@ export default function CupForm({ lang, translations }) {
                             <button
                                 type="submit"
                                 disabled={status === "sending"}
-                                className={`w-full py-2 rounded-[var(--border-radius-16)] transition transform
+                                className={`w-full py-2 rounded-[var(--border-radius-16)] transition transform cursor-pointer
                                     ${
                                         status === "sending"
                                             ? "bg-gray-400 text-white cursor-not-allowedQ"

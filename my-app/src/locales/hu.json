@@ -13,7 +13,7 @@
   "page": {
     "offer": "Ajánlatkérés",
     "title": "Max Cup | Egyedi Re-Pohár – Gyártás, Bérlés & Mosás",
-   "description": "Re-pohár minden eseményre. Egyedi Re-pohár gyártás vagy bérlés és mosás, olvass tovább és kérj személyre szabott ajánlatát."
+    "description": "Re-pohár minden eseményre. Egyedi Re-pohár gyártás vagy bérlés és mosás, olvass tovább és kérj személyre szabott ajánlatát."
   },
   "whymaxcup": {
     "whymaxcup": "Miért a Max Cup?",
@@ -66,7 +66,8 @@
     "reason": "Kapcsolatfelvétel oka",
     "sending": "Küldés...",
     "sent": "Elküldve",
-    "error": "Hiba"
+    "error": "Hiba",
+    "follow": "Kövess minket"
   },
   "footer": {
     "maxcup": "Max Cup | Minden jog fenntarva.",
